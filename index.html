@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retention Checklist — March 1 Video · Sugarman Slippery Slide Audit</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #f5a623;
+      --green: #4caf50;
+      --red: #f44336;
+      --blue: #4a9eff;
+      --purple: #a78bfa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    header h1 { font-size: 16px; font-weight: 600; color: var(--accent); }
+    header p { font-size: 12px; color: var(--muted); }
+    .progress-bar-wrap { flex: 1; min-width: 160px; max-width: 300px; }
+    .progress-bar-bg { background: var(--border); border-radius: 4px; height: 6px; }
+    .progress-bar-fill { background: var(--accent); border-radius: 4px; height: 6px; width: 0%; transition: width 0.3s; }
+    .progress-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-align: right; }
+
+    main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .principle {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .principle strong { color: var(--text); }
+
+    section {
+      margin-bottom: 56px;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--border);
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .section-header .ts {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .section-header .question {
+      font-size: 13px;
+      color: var(--blue);
+      margin-top: 4px;
+    }
+
+    /* audio player */
+    .audio-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .audio-block label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .audio-block audio { flex: 1; height: 32px; accent-color: var(--accent); }
+    audio { width: 100%; }
+
+    /* image grid */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .image-grid img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: block;
+      background: var(--surface);
+      cursor: zoom-in;
+      transition: border-color 0.2s;
+    }
+    .image-grid img:hover { border-color: var(--accent); }
+    .image-grid .img-cap {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* checklist */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .checklist .item-body { flex: 1; }
+    .checklist strong { color: var(--text); }
+    .checklist .bridge {
+      font-size: 12px;
+      color: var(--purple);
+      margin-top: 4px;
+      display: block;
+      padding-left: 12px;
+      border-left: 2px solid var(--purple);
+    }
+    .checklist li.checked .item-body { opacity: 0.45; text-decoration: line-through; }
+
+    /* table */
+    .slide-table-wrap { overflow-x: auto; margin: 20px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .check-cell { text-align: center; }
+    .check-cell input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    /* lightbox */
+    #lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 92vw; max-height: 90vh; border-radius: 8px; }
+
+    /* section divider */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* final note */
+    .final-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 40px;
+    }
+    .final-note strong { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      header { padding: 16px; }
+      main { padding: 24px 16px 60px; }
+      .image-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Retention Checklist — March 1 Video</h1>
+    <p>Sugarman Slippery Slide Audit · Every gap must pull to the next section</p>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 0 checked</div>
+  </div>
+</header>
+
+<main>
+
+  <div class="principle">
+    <strong>Principle:</strong> Every segment must make the viewer <em>need</em> to watch the next one.
+    Open a curiosity gap → escalate the stakes → close it just before the next gap opens.<br>
+    Source: Joseph Sugarman, <em>The Adweek Copywriting Handbook</em> — "Make the first sentence so compelling that the reader cannot stop."
+  </div>
+
+  <!-- ───── HOOK ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">0:00–0:15</span>
+      <div>
+        <h2>HOOK</h2>
+        <div class="question">Does it create an itch they must scratch?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=0,41" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/credibility_40_global_projects.png" alt="credibility 40 global projects"><div class="img-cap">credibility_40_global_projects</div></div>
+      <div><img src="assets/flow-v3.webp" alt="flow v3 B-roll"><div class="img-cap">flow-v3 B-roll</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Identity lock-in lands in the first 3 seconds</strong> — viewer thinks "that's me"<span class="bridge">Check: "If your workflow still lives in your head — this is for you." Pain named before solution?</span></div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Credibility is specific, not vague</strong> — "40+ enterprise projects" not "years of experience"</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Loss-aversion is explicit</strong> — "Skip this and you won't be included in the new roles" lands before the promise</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Outcome promise creates a gap</strong> — viewer thinks "how exactly?" and keeps watching</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Hook connects to Problem section</strong> — "same confusion, same wasted hour" in hook is the exact pain expanded in 0:15–1:36<span class="bridge">Curiosity bridge: Hook raises "what is the fix?" → Problem must deepen the wound before answering</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── PROBLEM ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">0:15–1:36</span>
+      <div>
+        <h2>PROBLEM</h2>
+        <div class="question">Does it make the pain visceral before offering relief?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=41,96" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/Gemini_Generated_Image_dai6bodai6bodai6.png" alt="blank doc frustration"><div class="img-cap">blank doc frustration</div></div>
+      <div><img src="assets/pain_same_decision_repetition.png" alt="pain repetition"><div class="img-cap">pain_same_decision_repetition</div></div>
+      <div><img src="assets/Gemini_Generated_Image_aroztearoztearoz.png" alt="process in head"><div class="img-cap">process in head</div></div>
+      <div><img src="assets/indecision_complexity_cost.png" alt="indecision cost"><div class="img-cap">indecision_complexity_cost</div></div>
+      <div><img src="assets/slide2_problem.png" alt="slide 2 problem"><div class="img-cap">slide2_problem</div></div>
+      <div><img src="assets/slide3_hidden_tax.png" alt="hidden tax"><div class="img-cap">slide3_hidden_tax</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Pain is specific and sequential</strong> — "Which script format? Where's the checklist? A-roll or screen capture first?" — viewer recognises their own chaos</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Pain is amplified, not explained</strong> — "Every. Single. Video. Same confusion." repeats the hook's language (bucket brigade connection)</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>No solution hinted yet</strong> — if the viewer can guess the fix here, they leave; keep the answer hidden</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Problem connects forward to Agenda</strong> — ends with an implicit question: "Is there actually a way out of this loop?"<span class="bridge">Curiosity bridge: Problem closes with maximum frustration → Agenda opens the door</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── AGENDA ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">1:36–2:08</span>
+      <div>
+        <h2>AGENDA + STAY PROMISE</h2>
+        <div class="question">Does it make the 3 steps feel inevitable?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=96,142" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/step123_delivery_pilot.gif" alt="3 steps gif"><div class="img-cap">step123_delivery_pilot</div></div>
+      <div><img src="assets/free_tools_ai_career_roadmap.png" alt="free tools roadmap"><div class="img-cap">free_tools_ai_career_roadmap</div></div>
+      <div><img src="assets/slide1_title.png" alt="title slide"><div class="img-cap">slide1_title</div></div>
+      <div><img src="assets/slide5_free_tools.png" alt="free tools slide"><div class="img-cap">slide5_free_tools</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>"By the end you will HAVE X" is stated explicitly</strong> — not "you will know how" but "you will HAVE a blueprint"</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Each step is teased, not explained</strong> — name it, make it sound achievable, move on</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Stack declared as free</strong> — removes the "this won't work for me" objection immediately</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Agenda connects to Step 1</strong> — last line pulls viewer into the first step<span class="bridge">Curiosity bridge: "Three steps — here's the first…" creates forward pull</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── STEP 1 ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">2:08–2:56</span>
+      <div>
+        <h2>STEP 1 — Map Your Production</h2>
+        <div class="question">Does the easy win create appetite for Step 2?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=142,176" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/pause_write_your_process.png" alt="pause write process"><div class="img-cap">pause_write_your_process</div></div>
+      <div><img src="assets/invisible_capture_automate_build.png" alt="invisible capture automate"><div class="img-cap">invisible_capture_automate_build</div></div>
+      <div><img src="assets/flow-v3-3.webp" alt="flow v3-3 B-roll"><div class="img-cap">flow-v3-3 B-roll</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Low friction on entry</strong> — "Write yours the same way. Don't polish it. Don't format it." removes fear</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>"Why it matters" stated before showing how</strong> — Sugarman: sell the feeling, then the mechanism</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>"Process is invisible" line creates discomfort</strong> — viewer feels the gap between where they are and where they could be</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Step 1 ends with an incomplete loop</strong> — "You have the map. But a map is useless if you can't read it quickly."<span class="bridge">Curiosity bridge: Viewer has done the easy thing; now they need to know what to do with it</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── STEP 2 ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">2:56–3:44</span>
+      <div>
+        <h2>STEP 2 — Let Claude Build the Checklist</h2>
+        <div class="question">Does the AI demo peak credibility and create urgency for Step 3?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=190,245" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/step1_write_step2_ai_system_deep.png" alt="write to AI system"><div class="img-cap">step1_write_step2_ai_system_deep</div></div>
+      <div><img src="assets/automation_ai_easier_faster_cheaper.gif" alt="automation gif"><div class="img-cap">automation_ai_easier_faster_cheaper</div></div>
+      <div><img src="assets/ai_control_panel_all_apps.png" alt="AI control panel"><div class="img-cap">ai_control_panel_all_apps</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Exact prompt is given on screen</strong> — specificity ("say exactly this:") signals insider knowledge and builds trust</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Demo shows transformation visually</strong> — raw notes → structured checklist (before/after in real time)</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>"Fifteen minutes" removes time objection</strong> — stated after the demo lands, not before</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>AI actor framing is correct</strong> — viewer is the director, Claude is the tool; not the other way</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Step 2 ends with a gap</strong> — "You have a checklist. But if it lives in a tab you'll close, it's useless."<span class="bridge">Curiosity bridge: The step most people skip is Step 3 — tease that explicitly here</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── STEP 3 ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">4:00–4:48</span>
+      <div>
+        <h2>STEP 3 — Pin It. One Click.</h2>
+        <div class="question">Is the "most-skipped step" framed as the only thing that makes the other two work?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=250,317" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/deliver_build_buttons_new_world.png" alt="deliver build buttons"><div class="img-cap">deliver_build_buttons_new_world</div></div>
+      <div><img src="assets/flow-v3-4.webp" alt="flow v3-4 B-roll"><div class="img-cap">flow-v3-4 B-roll</div></div>
+      <div><img src="assets/flow-v3-5.webp" alt="flow v3-5 B-roll"><div class="img-cap">flow-v3-5 B-roll</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Stakes for skipping are named</strong> — "Step 3 is the one most people skip — and it's why their systems fall apart in week two"</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Mechanism is simple and visible</strong> — GitHub Pages flow shown on screen with zero jargon</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Daily habit is painted</strong> — "Every morning you sit down? One click." — sensory, daily, ritual</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Machine-learning framing lands</strong> — "Own this as part of your job to train machines" — connects personal habit to AI transformation arc</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Step 3 connects to Summary</strong> — "You now have all three. Let me lock them in."<span class="bridge">Curiosity bridge: Have I actually understood the system? → Summary confirms</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── SUMMARY ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">4:48–5:20</span>
+      <div>
+        <h2>FULL SUMMARY</h2>
+        <div class="question">Does the recap reframe — not just repeat?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=317,353" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/coder_to_orchestrator_abstraction.png" alt="coder to orchestrator"><div class="img-cap">coder_to_orchestrator_abstraction</div></div>
+      <div><img src="assets/revolution_industrial_info_ai_age.png" alt="AI revolution"><div class="img-cap">revolution_industrial_info_ai_age</div></div>
+      <div><img src="assets/slide9_bam_control_panel.png" alt="BAM control panel"><div class="img-cap">slide9_bam_control_panel</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>Each step restated with the outcome, not the action</strong> — "Map it" → "you made the invisible visible"</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Transformation arc spoken aloud</strong> — BEFORE / AFTER contrast stated explicitly</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>"Nothing to remember" closes the original hook loop</strong> — the hook's pain ("same confusion every week") is resolved here</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Summary connects forward to CTA</strong> — final line creates pull toward action, not closure<span class="bridge">Curiosity bridge: "Now you know the system — here's the one thing to do in the next 10 minutes…"</span></div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── CTA ───── -->
+  <section>
+    <div class="section-header">
+      <span class="section-tag">5:36–6:08</span>
+      <div>
+        <h2>CALL TO ACTION</h2>
+        <div class="question">Does it give one clear action with stakes for not doing it?</div>
+      </div>
+    </div>
+
+    <div class="audio-block">
+      <label>Voiceover</label>
+      <audio controls preload="none">
+        <source src="assets/voiceover.mp3#t=353,388" type="audio/mpeg">
+        <source src="assets/voiceover.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/delivery_pilot_self_learning_creative.png" alt="delivery pilot"><div class="img-cap">delivery_pilot_self_learning_creative</div></div>
+      <div><img src="assets/abcdef_6stage_delivery_pilot.png" alt="6 stage delivery pilot"><div class="img-cap">abcdef_6stage_delivery_pilot</div></div>
+      <div><img src="assets/your_usecase_not_just_youtube.png" alt="your use case"><div class="img-cap">your_usecase_not_just_youtube</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>One immediate action first</strong> — "Write down your stages — just the headlines. Paste into Claude. See what it builds." (low-friction, today)</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Delivery Pilot framed as transformation, not product</strong> — "certifies prosumers for free" is the gain; "enterprises" signals it's serious</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Assessment link creates a curiosity gap</strong> — what will the assessment reveal about me? → click pull</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>CTA connects back to Hook identity</strong> — person who clicked for "workflow in your head" should feel this CTA is for them specifically</div></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- ───── SLIPPERY SLIDE TABLE ───── -->
+  <section>
+    <div class="section-header">
+      <div>
+        <h2>Cross-Segment Connections — Slippery Slide Audit</h2>
+        <div class="question">Each row must score YES or the segment before it is leaking viewers.</div>
+      </div>
+    </div>
+
+    <div class="slide-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>From → To</th>
+            <th class="check-cell">Curiosity Bridge?</th>
+            <th class="check-cell">Loss-Aversion?</th>
+            <th class="check-cell">Identity Connected?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Hook → Problem</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Problem → Agenda</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Agenda → Step 1</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Step 1 → Step 2</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Step 2 → Step 3</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Step 3 → Summary</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+          <tr><td>Summary → CTA</td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td><td class="check-cell"><input type="checkbox"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ───── OVERALL LOOP ───── -->
+  <section>
+    <div class="section-header">
+      <div>
+        <h2>Overall Curiosity Loop Check</h2>
+        <div class="question">The master loop: opened in Hook, closed in CTA.</div>
+      </div>
+    </div>
+
+    <div class="image-grid">
+      <div><img src="assets/blurred_3steps_missing_roles.png" alt="blurred 3 steps"><div class="img-cap">blurred_3steps_missing_roles</div></div>
+    </div>
+
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="item-body"><strong>One master loop opened in Hook, closed in CTA</strong> — "workflow in your head" introduced at 0:03 feels resolved at 6:00</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>No section gives away the answer of the next</strong> — if a viewer can stop and feel satisfied, you closed the loop too early</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>"Step 3 is what most people skip" held until Step 2 ends</strong> — this is the single most powerful retention spike; do not place it earlier</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Transformation is concrete, not abstract</strong> — "20–60 min/week saved" beats "save time"</div></li>
+      <li><input type="checkbox"><div class="item-body"><strong>Viewer is the actor, AI is the tool</strong> — every Claude mention positions the viewer as agent, not observer</div></li>
+    </ul>
+  </section>
+
+  <div class="final-note">
+    <strong>Run this checklist against the final edit before publishing.</strong><br>
+    Any unchecked box is a viewer drop-off point.
+  </div>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  // Checkbox persistence + progress
+  const STORAGE_KEY = 'retention-checklist-v1';
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  function saveState() {
+    const state = Array.from(checkboxes).map(cb => cb.checked);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function loadState() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    checkboxes.forEach((cb, i) => {
+      if (state[i]) {
+        cb.checked = true;
+        const li = cb.closest('li');
+        if (li) li.classList.add('checked');
+      }
+    });
+  }
+
+  function updateProgress() {
+    const total = checkboxes.length;
+    const done = Array.from(checkboxes).filter(cb => cb.checked).length;
+    document.getElementById('progressFill').style.width = (done / total * 100) + '%';
+    document.getElementById('progressLabel').textContent = done + ' / ' + total + ' checked';
+  }
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const li = cb.closest('li');
+      if (li) li.classList.toggle('checked', cb.checked);
+      saveState();
+      updateProgress();
+    });
+  });
+
+  loadState();
+  updateProgress();
+
+  // Lightbox
+  document.querySelectorAll('.image-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
